@@ -1,13 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 
+// a function that returns a button
+function Button() { 
+  return <button>Click me</button>
+}
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit Hello! <code>src/App.js</code> and save to reload.
         </p>
         <a
           className="App-link"
