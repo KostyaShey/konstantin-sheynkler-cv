@@ -1,10 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+// import the button component
+import Button from './components/Button/Button';
 
-// a function that returns a button
-function Button() { 
-  return <button>Click me</button>
-}
 
 function App() {
   return (
@@ -22,6 +20,7 @@ function App() {
         >
           Learn React
         </a>
+        <Button />
       </header>
     </div>
   );
