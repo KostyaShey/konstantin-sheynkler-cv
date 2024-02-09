@@ -1,11 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import Cookies from 'js-cookie';
 // import the button component
 import Button from './components/Button/Button';
+import { useState, useEffect } from 'react';
 
 
 function App() {
+
+  const [totalCounter, setTotalCounter] = useState(0);
+
+  useEffect(() => {
+    const clickCount = Cookies.get('clickCount');
+    if (clickCount) {
+      setTotalCounter(parseInt(clickCount));
+    } else {
+      Cookies.set('clickCount', 0);
+    }
+  }, []); // Empty array means this effect runs once on mount
+
+  const changeCounterCookie = () => {
+    const newCount = totalCounter + 1;
+    setTotalCounter(newCount);
+    Cookies.set('clickCount', newCount);
+  };
+
   return (
+
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -20,7 +41,12 @@ function App() {
         >
           Learn React
         </a>
-        <Button />
+        <Button changeCounterCookie={changeCounterCookie}/>
+        {totalCounter && (
+          <div>
+            <p>Total clicks: {totalCounter}</p>
+          </div>
+        )}
       </header>
     </div>
   );

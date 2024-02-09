@@ -10,9 +10,15 @@
     margin: 4px 2px;
     cursor: pointer;
     transition: background-color 3s ease, transform 10s;
+    transform-origin: center;
 }
 
-.button:hover {
-    background-color: blue;
-    transform: rotate(360deg);
+/*.button:hover {
+    background-color: rgb(119, 219, 124);
+    transform: rotate(360deg) scale(1.1);
+} */
+.button.clicked {
+    height: calc(100% + 20px);
+    width: calc(100% + 20px);
+    transition: height 0.3s ease, width 0.3s ease;
 }
