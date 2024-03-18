@@ -1,0 +1,24 @@
+.contentNavigation {
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+}
+
+.navTitle {
+    font-weight: bold;
+}
+
+.contentList {
+    min-height: 15%;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+}
+
+.contentAnchors {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1em;
+    justify-content: center;
+}

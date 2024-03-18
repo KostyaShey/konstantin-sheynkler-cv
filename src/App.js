@@ -1,53 +1,77 @@
-import logo from './logo.svg';
-import './App.css';
-import Cookies from 'js-cookie';
-// import the button component
-import Button from './components/Button/Button';
 import { useState, useEffect } from 'react';
+import './App.css';
+import MainContent from './components/MainContent/MainContent';
+import SideBar from './components/SideBar/SideBar';
+import { ViewContext } from './ViewedContext';
 
 
 function App() {
 
-  const [totalCounter, setTotalCounter] = useState(0);
+  const [viewedContent, setViewedContent] = useState('Home');
+  const [viewedContentCard, setViewedContentCard] = useState();
 
   useEffect(() => {
-    const clickCount = Cookies.get('clickCount');
-    if (clickCount) {
-      setTotalCounter(parseInt(clickCount));
-    } else {
-      Cookies.set('clickCount', 0);
-    }
-  }, []); // Empty array means this effect runs once on mount
+    ViewContext.navigationTag = viewedContent
+  });
+  
 
-  const changeCounterCookie = () => {
-    const newCount = totalCounter + 1;
-    setTotalCounter(newCount);
-    Cookies.set('clickCount', newCount);
-  };
+  const data = {
+    "Projekte": [
+      { 
+        'navigationTag': "webSchlomo"
+      },
+      { 
+        'navigationTag': "ImmoScrapy"
+      }
+    ],
+    "Berufserfahrung": [
+      { 
+        'navigationTag': "02.2012 - 02.2014",
+        'content': "bla"
+      },
+      { 
+        'navigationTag': "03.2014 - 02.2018"
+      },
+      { 
+        'navigationTag': "04.2014 - 02.2018"
+      },
+      { 
+        'navigationTag': "05.2014 - 02.2018"
+      },
+      { 
+        'navigationTag': "06.2014 - 02.2018"
+      },
+      { 
+        'navigationTag': "07.2014 - 02.2018"
+      },
+      { 
+        'navigationTag': "08.2014 - 02.2018"
+      },
+      { 
+        'navigationTag': "09.2014 - 02.2018"
+      },
+      { 
+        'navigationTag': "10.2014 - 02.2018"
+      }
+    ],
+    "Ausbildung": [
+      { 
+        'navigationTag': "02.2004 - 02.2008"
+      },
+      { 
+        'navigationTag': "02.2008 - 02.2012"
+      }
+    ]
+  }
+
+
 
   return (
-
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit Hello! <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button changeCounterCookie={changeCounterCookie}/>
-        {totalCounter && (
-          <div>
-            <p>Total clicks: {totalCounter}</p>
-          </div>
-        )}
-      </header>
+      <ViewContext.Provider value={viewedContentCard}>
+        <SideBar setViewedContent={setViewedContent} />
+        <MainContent viewedContent={viewedContent} viewedContentCard={viewedContentCard} setViewedContentCard={setViewedContentCard} data={data[viewedContent]}/>
+      </ViewContext.Provider>
     </div>
   );
 }

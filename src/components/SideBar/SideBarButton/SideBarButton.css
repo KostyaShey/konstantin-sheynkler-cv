@@ -1,0 +1,31 @@
+
+.SideBarButton {
+    /*min-height: 2em;*/
+    line-height: 1.5em;
+    padding: 0.25em 0;
+    margin-left: 0;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.SideBarButton::after {
+    content: ""; 
+    display: block; 
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    transition: border 2.5s cubic-bezier(0.64,-0.03, 0.46, 1.84), width 2.5s;
+    width: 5%;
+    padding-top: 0.75em;
+
+}
+
+.SideBarButton:hover::after {
+    content: ""; 
+    display: block;
+    border-color: rgba(0, 0, 0, 1);
+    transition: border 0.5s cubic-bezier(0.64,-0.03, 0.46, 1.84), width 0.5s;
+    width: 100%;
+    padding-top: 0.75em;
+}
+
+
