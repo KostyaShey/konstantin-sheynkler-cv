@@ -1,7 +1,6 @@
 import './SideBar.css';  
 import SideBarButton from './SideBarButton/SideBarButton';
 
-
 export default function SideBar(props) {
 
   const navigationElements = [
@@ -23,9 +22,9 @@ export default function SideBar(props) {
     }
   ]
 
-function handleClick (idx) {
-    props.setViewedContent(idx)
-}
+  function handleClick (idx) {
+    props.setNavigationTag(idx); 
+  }
 
   const getNavigetaionElements = elements => {
     let content = [];

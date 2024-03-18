@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import './App.css';
 import MainContent from './components/MainContent/MainContent';
 import SideBar from './components/SideBar/SideBar';
-import { ViewContext } from './ViewedContext';
+import { NavigationTag, ContentTag } from './ViewContext';
 
 
 function App() {
 
-  const [viewedContent, setViewedContent] = useState('Home');
-  const [viewedContentCard, setViewedContentCard] = useState();
-
-  useEffect(() => {
-    ViewContext.navigationTag = viewedContent
-  });
+  const [navigationTag, setNavigationTag] = useState(useContext(NavigationTag));
+  const [contentTag, setContentTag] = useState(useContext(ContentTag));
   
 
   const data = {
@@ -68,10 +64,12 @@ function App() {
 
   return (
     <div className="App">
-      <ViewContext.Provider value={viewedContentCard}>
-        <SideBar setViewedContent={setViewedContent} />
-        <MainContent viewedContent={viewedContent} viewedContentCard={viewedContentCard} setViewedContentCard={setViewedContentCard} data={data[viewedContent]}/>
-      </ViewContext.Provider>
+      <NavigationTag.Provider value={navigationTag}>
+        <SideBar setNavigationTag={setNavigationTag} />
+        <ContentTag.Provider value={contentTag}>
+          <MainContent setContentTag={setContentTag} data={data[navigationTag]}/>
+        </ContentTag.Provider>      
+      </NavigationTag.Provider>
     </div>
   );
 }

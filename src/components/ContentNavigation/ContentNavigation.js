@@ -1,20 +1,21 @@
 import './ContentNavigation.css'; 
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import { ViewContext } from '../../ViewedContext';
+import { NavigationTag, ContentTag } from '../../ViewContext';
 
 export default function ContentNavigation(props) {
 
-  const contentContext = useContext(ViewContext);
+  const navigationTag = useContext(NavigationTag);
+  const contentTag = useContext(ContentTag);
 
   useEffect(() => {
-    if (props.navigationTags.includes(contentContext) == false) {
-      props.setViewedContentCard(props.navigationTags[0])
+    if (props.navigationTags.includes(contentTag) == false) {
+      props.setContentTag(props.navigationTags[0])
     }
   });
 
   function handleClick (idx) {
-    props.setViewedContentCard(idx)
+    props.setContentTag(idx);
   }
 
   const getContentAnchors = elements => {
@@ -29,7 +30,7 @@ export default function ContentNavigation(props) {
   return (
     <div className="contentNavigation">
       <div className='navTitle'>
-          {props.viewedContent}:
+          {navigationTag}:
       </div>
 
           <div className="contentList">

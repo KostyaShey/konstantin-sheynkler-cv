@@ -2,21 +2,22 @@ import './MainContent.css';  // import the css file
 import '../ContentNavigation/ContentNavigation';
 import ContentNavigation from '../ContentNavigation/ContentNavigation';
 import { useContext } from 'react';
-import { ViewContext } from '../../ViewedContext';
+import { NavigationTag, ContentTag } from '../../ViewContext';
 
 export default function MainContent(props) {
 
-  const contentContext = useContext(ViewContext);
+  const navigationTag = useContext(NavigationTag);
+  const contentTag = useContext(ContentTag);
 
   return (
     <div className="main-content white_transparent">
-      {props.viewedContent != 'Home' && <ContentNavigation viewedContent={props.viewedContent} setViewedContentCard={props.setViewedContentCard} navigationTags={props.data.map(item => item.navigationTag)}/>}
+      {navigationTag != 'Home' && <ContentNavigation setContentTag={props.setContentTag} navigationTags={props.data.map(item => item.navigationTag)}/>}
       <p>
-        Currently viewed content: {ViewContext.navigationTag}
+        Currently viewed content: {navigationTag}
       </p>
-      {props.viewedContent != 'Home'  &&
+      {navigationTag != 'Home'  &&
         <p>
-          Currently viewed content card: {contentContext}
+          Currently viewed content card: {contentTag}
         </p>
       }
     </div>
