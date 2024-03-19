@@ -1,7 +1,7 @@
 .contentNavigation {
     display: flex;
     flex-direction: row;
-    margin: 1em;
+    margin: 1em 1em 1em 0;
 }
 
 .navTitle {

@@ -1,16 +1,17 @@
 import './ContentNavigation.css'; 
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import { NavigationTag, ContentTag } from '../../ViewContext';
+import { NavigationTag, ContentTag, Data } from '../../ViewContext';
 
 export default function ContentNavigation(props) {
 
   const navigationTag = useContext(NavigationTag);
   const contentTag = useContext(ContentTag);
+  const navigationTags = useContext(Data)[navigationTag].map(item => item.navigationTag);
 
   useEffect(() => {
-    if (props.navigationTags.includes(contentTag) == false) {
-      props.setContentTag(props.navigationTags[0])
+    if (navigationTags.includes(contentTag) == false) {
+      props.setContentTag(navigationTags[0])
     }
   });
 
@@ -34,7 +35,7 @@ export default function ContentNavigation(props) {
       </div>
 
           <div className="contentList">
-              {getContentAnchors(props.navigationTags)}
+              {getContentAnchors(navigationTags)}
           </div>
 
     </div>

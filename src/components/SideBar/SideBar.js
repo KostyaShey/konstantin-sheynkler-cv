@@ -19,6 +19,10 @@ export default function SideBar(props) {
     {
       "id": "Ausbildung",
       "name":"Ausbildung"
+    },
+    {
+      "id": "Kontakt",
+      "name":"Kontakt"
     }
   ]
 
@@ -40,7 +44,7 @@ export default function SideBar(props) {
       <p>
         Konstantin Sheynkler
       </p>
-      <ul>{getNavigetaionElements(navigationElements)}</ul>
+      <ul className="sidebarNav">{getNavigetaionElements(navigationElements)}</ul>
     </div>
   );
 }
