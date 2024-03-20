@@ -14,14 +14,6 @@ export default function MainContent(props) {
   return (
     <div className="main-content white_transparent">
       {navigationTags != 0 ? <DynamicContentViewer setContentTag={props.setContentTag} /> : <StaticContentRouter />}
-      <p>
-        Currently viewed content: {navigationTag}
-      </p>
-      {navigationTags != 0  &&
-        <p>
-          Currently viewed content card: {contentTag}
-        </p>
-      }
     </div>
   );
 }
